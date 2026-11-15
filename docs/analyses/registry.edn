@@ -114,4 +114,14 @@
    :module "src/kafun/methods/autorun.kotoba"
    :anchor [:kafun/sourcing :kafun/derived]
    :note "verdict datom の :kafun/sourcing 旗を典拠・鮮度管理に。"
-   :gates ["G6" "G8"]}]}
+   :gates ["G6" "G8"]}
+  {:id "loop-dominance" :family :systems :question "優勢ループ"
+   :module "src/kafun/methods/dynamics.kotoba"
+   :anchor [:kafun.stand/sapling-supply :kafun.stand/consent]
+   :note "2-stock readiness の優勢ループ分析 (Ford/PPM流)。operator実行、candidate-only。"
+   :gates ["G5"]}
+  {:id "sensitivity-mc" :family :forecast :question "感度分布"
+   :module "src/kafun/methods/dynamics.kotoba"
+   :anchor [:kafun.stand/emission-density :kafun.stand/area-ha]
+   :note "burden入力のモンテカルロ感度分析 (再現性のため決定論的seed)。operator実行。"
+   :gates ["G5"]}]}

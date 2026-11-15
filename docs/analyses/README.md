@@ -1,4 +1,8 @@
-# 花粉20分析の統合 (AWAI-2939)
+# 花粉分析の統合 (AWAI-2939、AWAI-2948)
+
+20分析に加え、loop-dominance (優勢ループ) と sensitivity-mc (感度分布) を
+`dynamics.kotoba` 基盤に追加登録した (計22件)。いずれも operator 実行の
+candidate-only である。
 
 親: [AWAI-706](https://linear.app/kotobalabs/issue/AWAI-706) /
 子: [AWAI-2939](https://linear.app/kotobalabs/issue/AWAI-2939) /
