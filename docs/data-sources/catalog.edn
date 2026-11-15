@@ -1,0 +1,103 @@
+;; docs/data-sources/catalog.edn — 公開データ源カタログ (AWAI-2944)
+;; 実データのrepo取込はしない (G7)。公開集計の典拠目録のみ。
+;; 即時利用可: f-pollen-annual (PDL1.0), tokyo-od (CC-BY-4.0)。他は閲覧専用扱い。
+{:catalog/id "kafun.data-sources/v1"
+ :catalog/issue "AWAI-2944"
+ :catalog/collected "2026-11-15"
+ :catalog/unit-note "個/m3 (はなこ体積法) と 個/cm2 (ダーラム系) は混在。emission-density 定義は未確定"
+ :sources
+ [{:id "f-genkyou" :name "森林資源の現況 (林野庁)"
+   :urls ["https://www.rinya.maff.go.jp/j/keikaku/genkyou/r4/"
+          "https://www.rinya.maff.go.jp/j/press/keikaku/231013.html"]
+   :format "HTML表+PDF" :update "約5年" :license "PDL1.0"
+   :use "L3-1: 人工林スギ齢級別面積→主伐・再造林ポテンシャル分母。L1-1不可"}
+  {:id "f-estat" :name "e-Stat 森林資源現況DB"
+   :urls ["https://www.e-stat.go.jp/stat-search/database?page=1&layout=datalist&cycle=0&toukei=00501007&tstat=000001115755&tclass1=000001115776&tclass2=000001211280&tclass3val=0&statdisp_id=0002066519"
+          "https://www.e-stat.go.jp/node/308"]
+   :format "Excel/CSV" :update "約5年" :license "政府標準利用規約2.0"
+   :use "L3-1: 源 f-genkyou の機械可読版"}
+  {:id "f-youran" :name "森林・林業統計要覧 (林野庁)"
+   :urls ["https://www.rinya.maff.go.jp/j/kikaku/toukei/youran.html"
+          "https://www.rinya.maff.go.jp/j/kikaku/toukei/youran_mokuzi2026.html"]
+   :format "PDF年刊" :update "年刊" :license "PDL1.0"
+   :use "L1-1: 表17山行苗木生産量。L3-1: 表11/13造林・再造林面積。無花粉区分・都道府県分解能は未確認"}
+  {:id "f-hakusyo" :name "森林・林業白書"
+   :urls ["https://www.rinya.maff.go.jp/j/kikaku/hakusyo/r7hakusyo_h/all/chap1_2_3.html"
+          "https://www.rinya.maff.go.jp/j/kikaku/hakusyo/r6hakusyo_h/material/mt_index.html"]
+   :format "HTML+PDF/Excel" :update "年刊" :license "PDL1.0"
+   :use "政策目標 (R15年スギ2割減・30年後半減) と間伐/造林年次実績"}
+  {:id "f-naegi" :name "花粉の少ない苗木生産量 (林野庁)"
+   :urls ["https://www.rinya.maff.go.jp/j/sin_riyou/kafun/naegi.html"
+          "https://www.rinya.maff.go.jp/j/sin_riyou/kafun/attach/pdf/naegi-8.pdf"]
+   :format "HTML+PDF" :update "年次" :license "PDL1.0"
+   :use "L1-1中核: 少花粉スギ1919万本約6割等。無花粉単独は未分離"}
+  {:id "f-nfi" :name "森林生態系多様性基礎調査 (NFI)"
+   :urls ["https://www.rinya.maff.go.jp/j/keikaku/tayouseichousa/tikuseki.html"
+          "https://warp.da.ndl.go.jp/info:ndljp/pid/9286359/www.rinya.maff.go.jp/j/keikaku/tayouseichousa/tikuseki.html"]
+   :format "HTML" :update "期ごと" :license "PDL1.0"
+   :use "全国資源背景値のみ"}
+  {:id "f-kokuyurin" :name "国有林野事業統計書"
+   :urls ["https://www.e-stat.go.jp/index.php/stat-search/files?page=1&bunya_l=04&bunya_s=0403&layout=dataset&toukei=00501005&tstat=000001022821&result_page=1&stat_infid=000040429649"
+          "https://www.e-stat.go.jp/stat-search/files?page=1&bunya_l=04&layout=dataset&toukei=00501005&tstat=000001022821&stat_infid=000040265867"]
+   :format "Excel/CSV年刊" :update "年刊" :license "政府標準利用規約2.0"
+   :use "国有林伐採造林実績 (L3-1補助)"}
+  {:id "f-hanako" :name "環境省 花粉観測システム (はなこさん)"
+   :urls ["http://kafun.taiki.go.jp/"
+          "https://www.env.go.jp/chemi/anzen/kafun/"
+          "https://www.env.go.jp/press/106362.html"]
+   :format "HTML (個/m3体積法、毎時)" :update "シーズン毎時" :license "閲覧専用扱い"
+   :use "emission-density時系列の候補。二次利用条件・API有無は未確認"}
+  {:id "f-pollen-annual" :name "環境省 花粉飛散量調査年報"
+   :urls ["https://www.env.go.jp/content/000374236.pdf"
+          "https://www.env.go.jp/content/000365037.pdf"]
+   :format "PDF年刊 (個/cm2)" :update "年刊" :license "PDL1.0"
+   :use "地点シーズン総飛散数→年次emission-density。即時利用可"}
+  {:id "f-tokyo-navi" :name "東京都アレルギー情報navi 飛散花粉数"
+   :urls ["https://www.hokeniryo1.metro.tokyo.lg.jp/allergy/pollen/data/total.html"
+          "https://www.hokeniryo1.metro.tokyo.lg.jp/allergy/pollen/measurement.html"
+          "https://www.hokeniryo1.metro.tokyo.lg.jp/allergy/pollen/archive/r7/total.html"]
+   :format "HTML日次+過去CSV (個/cm2)" :update "シーズン日次" :license "制限的要許諾"
+   :use "意味論最適だが許諾なしDB化不可"}
+  {:id "f-tokyo-od" :name "東京都オープンデータ 花粉情報"
+   :urls ["https://catalog.data.metro.tokyo.lg.jp/dataset/t000055d0000000446"
+          "http://www.tokyo-eiken.go.jp/files/kj_kankyo/kafun/iinkai/kaisaijoukyou_h29_01/05_3.csv"]
+   :format "CSV" :update "不定期" :license "CC-BY-4.0"
+   :use "ベースライン参照可 (2017年時点)。即時利用可"}
+  {:id "f-tenki" :name "tenki.jp / 気象庁 花粉情報"
+   :urls ["https://tenki.jp/pollen/"
+          "https://www.jma.go.jp/jma/kishou/know/kurashi/kafun.html"]
+   :format "HTML予報" :update "シーズン日次" :license "私的閲覧のみ"
+   :use "実測でないためemission-density不適、参照用"}
+  {:id "f-yamanashi" :name "山梨県 花粉症ポータル過去飛散状況 (道府県例)"
+   :urls ["https://www.pref.yamanashi.jp/kafunsho/sugihinoki/kako.html"
+          "https://www.pref.yamanashi.jp/kafunsho/sugihinoki/index.html"]
+   :format "HTML+年次PDF" :update "年次" :license "閲覧専用扱い"
+   :use "総飛散数・期間の年次集計候補。条件確認後に確定"}
+  {:id "f-wn" :name "ウェザーニューズ 花粉Ch/ポールンロボ (民間参考)"
+   :urls ["https://weathernews.jp/s/pollen/"
+          "https://weathernews.jp/smart/pollen_entry_2026/"]
+   :format "HTML/アプリ" :update "リアルタイム" :license "proprietary閲覧のみ"
+   :use "公式条件確認まで取込不可"}
+  ]
+ :extensions
+ [{:id "agg-adapter" :name "都道府県×樹種クラス集計アダプタ"
+   :uses ["f-genkyou" "f-estat" "f-pollen-annual" "f-tokyo-navi"]
+   :intake "repo外script: 公開集計→EDNベクタ (aggregate:<地域>:<樹種>:<年度>のみ、地番・座標禁止)"
+   :touches ["kafun_edn" "remediate" "autorun/kotoba" "ie_flow" "digest"]}
+  {:id "season-envelope" :name "シーズンnowcast包絡"
+   :uses ["f-hanako" "f-pollen-annual" "f-tokyo-navi"]
+   :intake "repo外season prior EDN {region-class week-bucket rate-min/max source as-of} をbeat時注入"
+   :touches ["dynamics" "react_loop" "autorun" "digest"]}
+  {:id "nursery-supply" :name "苗木・再造林需給readiness校正"
+   :uses ["f-naegi" "f-youran" "f-hakusyo"]
+   :intake "repo外集計→envelope EDN {supply-rate-min/max consent-rate-min/max source fiscal-year}"
+   :touches ["dynamics" "react_loop" "ie_flow" "digest"]}
+  {:id "constraint-layer" :name "保護・同意・炭素制約レイヤ"
+   :uses ["f-genkyou" "f-youran" "f-hakusyo"]
+   :intake "repo外script: 公開割合→代表stand EDN (bool/enum+丸め規則ID+典拠)。地域クラス以上"
+   :touches ["remediate" "autorun/kotoba" "ie_flow" "digest"]}]
+ :unresolved
+ ["一次資料の表番号・Excelスキーマ版の固定 (operator取込実装前)"
+  "はなこ条件原文・API有無、都navi当季CSV、tenki規約原文、WN公式条件"
+  "emission-density 単位・粒度定義 (m3/cm2換算ルール)"
+  "ie-flow共有metrics I/F、operator取込の配置主体、beat注入I/F、丸め粒度下限の数値基準"]}
