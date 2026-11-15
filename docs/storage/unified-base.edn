@@ -5,7 +5,12 @@
  :unified-base/issue "AWAI-2941"
  :unified-base/parent "AWAI-706"
  :unified-base/status :design-candidate-only
- :base {:forest/note "CID-block の集合とその closure。本書での定義。apex 文書に forest の語はなく、命名の固定はしない"
+ :base {:forest ".forest.car.zst (Filecoin Forest)"
+        :forest-car {:frames "8KiB zstd" :index "skippable zstd frame"
+                     :tool "forest-tool snapshot compress/validate"
+                     :inner-car "CARv2 (awai; Forest 互換の表明はしない)"
+                     :ref-zstd-bytes 1572
+                     :ref-note "seed-CAR 5277B の plain zstd 参考値 (frame/index 構造ではない)"}
         :route [:form :canonical-bytes :cid :pack]
         :form "Kotoba S-form (schema・query の意味共有。物理表現の統一を意味しない)"
         :value "kotoba.value.v1"
