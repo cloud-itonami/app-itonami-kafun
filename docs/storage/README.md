@@ -9,8 +9,11 @@
 
 ## 正本 (forest)
 
-`forest` は CID-block の集合とその closure を指す本書の定義である。
-apex 文書に forest の語はなく、命名の固定はしない。
+`forest` は Filecoin Forest の `.forest.car.zst` である。
+複数 CAR block を 8KiB zstd frames に包み、index を skippable zstd frame に置く。
+正規の生成・検証は `forest-tool snapshot compress` / `validate`。
+inner CAR は awai の CARv2 (Forest 互換の表明はしない)。
+参考実測: seed-CAR 5277 B → zstd 1572 B (29.8%、zstd 1.5.7、plain zstd で frame/index 構造ではない)。
 P0 route に従う: Form → canonical bytes → CID → pack。
 
 - 意味共有: Kotoba S-form。物理表現の統一を意味しない。
