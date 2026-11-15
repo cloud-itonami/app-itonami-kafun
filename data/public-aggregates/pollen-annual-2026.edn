@@ -1,0 +1,65 @@
+;; data/public-aggregates/pollen-annual-2026.edn — 環境省 花粉実測調査 (スギ) 2026年集計
+;; source: https://www.env.go.jp/content/000374236.pdf (令和8年6月19日時点版)
+;; license: PDL1.0 (出典記載)。unit: 個/cm2 (ダーラム系)。grain: 地点×月小計・期間合計。
+;; G7: 地番・林小班・座標は含まない。seed (data/seed.edn) は合成のまま。
+{:as-of "2026-06-19" :season "2026" :species :sugi :unit "個/cm2"
+ :rank-bins {:few [0 10] :rather-many [10 30] :many [30 50] :very-many [50 100] :extreme [100 nil]}
+ :source "https://www.env.go.jp/content/000374236.pdf"
+ :license "PDL1.0"
+ :sourcing "public-aggregate:env.go.jp:2026"
+ :sites [
+  {:id "aggregate:hokkaido:sugi:2026" :prefecture :hokkaido :site "札幌市"
+   :feb 0.0 :mar 38.0 :apr 13.0 :may 0.0 :season-total 51.0}
+  {:id "aggregate:aomori:sugi:2026" :prefecture :aomori :site "弘前市"
+   :feb 17.0 :mar 10883.0 :apr 9158.0 :may 0.0 :season-total 20058.0}
+  {:id "aggregate:iwate:sugi:2026" :prefecture :iwate :site "大船渡市"
+   :feb 486.1 :mar 18653.4 :apr 2391.0 :may 0.0 :season-total 21530.5}
+  {:id "aggregate:yamagata:sugi:2026" :prefecture :yamagata :site "山形市"
+   :feb 11.9 :mar 9444.6 :apr 2644.0 :may 0.0 :season-total 12100.5}
+  {:id "aggregate:tochigi:sugi:2026" :prefecture :tochigi :site "壬生町"
+   :feb 1744.7 :mar 4419.1 :apr 101.8 :may 3.0 :season-total 6268.6}
+  {:id "aggregate:saitama:sugi:2026" :prefecture :saitama :site "さいたま市"
+   :feb 1140.4 :mar 3162.7 :apr 1018.3 :may 2.1 :season-total 5323.5}
+  {:id "aggregate:tokyo:sugi:2026" :prefecture :tokyo :site "千代田区"
+   :feb 895.9 :mar 2512.4 :apr 96.8 :may 5.8 :season-total 3510.9}
+  {:id "aggregate:kanagawa:sugi:2026" :prefecture :kanagawa :site "横浜市"
+   :feb 2079.6 :mar 3550.5 :apr 132.9 :may 4.2 :season-total 5767.2}
+  {:id "aggregate:ishikawa:sugi:2026" :prefecture :ishikawa :site "小松市"
+   :feb 114.0 :mar 5443.0 :apr 89.0 :may 0.0 :season-total 5646.0}
+  {:id "aggregate:fukui:sugi:2026" :prefecture :fukui :site "永平寺町"
+   :feb 120.0 :mar 3060.9 :apr 52.0 :may 0.0 :season-total 3232.9}
+  {:id "aggregate:yamanashi:sugi:2026" :prefecture :yamanashi :site "甲府市"
+   :feb 1348.5 :mar 1776.0 :apr 92.8 :may 0.4 :season-total 3217.7}
+  {:id "aggregate:gifu:sugi:2026" :prefecture :gifu :site "大垣市"
+   :feb 1269.0 :mar 3734.0 :apr 59.0 :may 0.0 :season-total 5062.0}
+  {:id "aggregate:shizuoka:sugi:2026" :prefecture :shizuoka :site "静岡市"
+   :feb 4133.2 :mar 3865.3 :apr 59.1 :may 0.3 :season-total 8057.9}
+  {:id "aggregate:mie:sugi:2026" :prefecture :mie :site "津市"
+   :feb 3076.8 :mar 3858.7 :apr 36.2 :may 0.6 :season-total 6972.3}
+  {:id "aggregate:shiga:sugi:2026" :prefecture :shiga :site "大津市"
+   :feb 352.5 :mar 1516.7 :apr 47.6 :may 0.0 :season-total 1916.8}
+  {:id "aggregate:kyoto:sugi:2026" :prefecture :kyoto :site "京都市"
+   :feb 388.0 :mar 1776.0 :apr 81.0 :may 0.0 :season-total 2245.0}
+  {:id "aggregate:osaka:sugi:2026" :prefecture :osaka :site "泉佐野市"
+   :feb 253.3 :mar 840.7 :apr 11.0 :may 0.0 :season-total 1105.0}
+  {:id "aggregate:hyogo:sugi:2026" :prefecture :hyogo :site "西宮市"
+   :feb 446.8 :mar 2012.1 :apr 36.6 :may 2.1 :season-total 2497.6}
+  {:id "aggregate:nara:sugi:2026" :prefecture :nara :site "奈良市"
+   :feb 476.3 :mar 1182.9 :apr 22.8 :may 0.0 :season-total 1682.0}
+  {:id "aggregate:tottori:sugi:2026" :prefecture :tottori :site "米子市"
+   :feb 312.0 :mar 1563.1 :apr 26.0 :may 0.0 :season-total 1901.1}
+  {:id "aggregate:hiroshima:sugi:2026" :prefecture :hiroshima :site "尾道市"
+   :feb 388.7 :mar 916.1 :apr 10.1 :may 0.0 :season-total 1314.9}
+  {:id "aggregate:yamaguchi:sugi:2026" :prefecture :yamaguchi :site "宇部市"
+   :feb 1384.1 :mar 1000.0 :apr 2.7 :may 0.0 :season-total 2386.8}
+  {:id "aggregate:kagawa:sugi:2026" :prefecture :kagawa :site "三木町"
+   :feb 195.4 :mar 476.8 :apr 0.6 :may 0.0 :season-total 672.8}
+  {:id "aggregate:ehime:sugi:2026" :prefecture :ehime :site "今治市"
+   :feb 592.8 :mar 795.2 :apr 6.7 :may 0.0 :season-total 1394.7}
+  {:id "aggregate:fukuoka:sugi:2026" :prefecture :fukuoka :site "福岡市"
+   :feb 1471.8 :mar 1182.1 :apr 2.2 :may 0.0 :season-total 2656.1}
+  {:id "aggregate:kumamoto:sugi:2026" :prefecture :kumamoto :site "八代市"
+   :feb 945.9 :mar 1268.0 :apr 0.6 :may 0.0 :season-total 2214.5}
+  {:id "aggregate:miyazaki:sugi:2026" :prefecture :miyazaki :site "宮崎市"
+   :feb 528.3 :mar 3932.0 :apr 6.2 :may 0.0 :season-total 4466.5}
+ ]}
