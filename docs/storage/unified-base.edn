@@ -1,0 +1,35 @@
+;; docs/storage/unified-base.edn — 花粉データ基盤の一本化設計 (AWAI-2941)
+;; 正本は1つ (forest CARv2)。10形式は CID からの派生 projection で、
+;; 正本にしない。query 入口は FILE / QUERY / LAKE の3種。
+{:unified-base/id "kafun.storage/unified-base-v1"
+ :unified-base/issue "AWAI-2941"
+ :unified-base/parent "AWAI-706"
+ :unified-base/status :design-candidate-only
+ :base {:forest/note "CID-block の集合とその closure。本書での定義。apex 文書に forest の語はなく、命名の固定はしない"
+        :route [:form :canonical-bytes :cid :pack]
+        :form "Kotoba S-form (schema・query の意味共有。物理表現の統一を意味しない)"
+        :value "kotoba.value.v1"
+        :ipld "tag-42 + canonical re-encode match (string map keys)"
+        :cid "mf/cidv1-dag-cbor"
+        :car "CARv2/index/trustless (io-ipld-car)"
+        :bytes-plane "Yataverse raw-only (CIDv1/raw+sha2-256, readback-verify)"
+        :meta "Kotobase signed commit / authorized query / causal commit"
+        :sources ["network-awai-apex/docs/awai-fs-storage-architecture.md"
+                  "network-awai-apex/docs/awai-fs-p0-baseline.md"
+                  "awai-fs-readiness-v1"]}
+ :projections
+ [{:format :edn :role "in-repo canonical view" :derived-from :cid :query-if :file}
+  {:format :json :role "API view" :derived-from :cid :query-if :file}
+  {:format :json-ld :role "wire only" :derived-from :cid :query-if :file}
+  {:format :csv :role "tabular interchange" :derived-from :cid :query-if :lake}
+  {:format :sqlite :role "local query cache" :derived-from :cid :query-if :query}
+  {:format :parquet :role "LAKE analytics" :derived-from :cid :query-if :lake}
+  {:format :geojson :role "map features" :derived-from :cid :query-if :file}
+  {:format :topojson :role "map transport" :derived-from :cid :query-if :file}
+  {:format :eavt :role "ledger replay" :derived-from :cid :query-if :query}
+  {:format :car-raw :role "bytes plane" :derived-from :cid :query-if :file}]
+ :query-entries [:file :query :lake]
+ :out-of-scope ["pack locality (pack_plan/catalog/pack) — P4/new scope"
+                "node adapters — separate acceptance"
+                "kafun-side migration — stays candidate-only"]
+ :gates "G1-G8, N1-N5, AWAI-2928 同意10則, Native/Otehon 境界を維持"}
