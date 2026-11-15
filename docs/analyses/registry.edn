@@ -1,0 +1,117 @@
+;; docs/analyses/registry.edn — 20分析の統合レジストリ (AWAI-2939)
+;; EDN canonical (repository contract)。全分析は assessment-only (G5)、
+;; 合成seedのみ (G7)、個人データなし (G2)。各分析は kafun オントロジー
+;; (schema/ontology.kafun.edn) の属性・ verdict に接地する。
+;; awaifs readiness baseline (awai-fs-readiness-v1) の exclusions により
+;; research/documentation は受入対象外: 本レジストリは candidate-only で、
+;; gate の合格証拠として流用しない。
+{:registry/id "kafun.analyses/20"
+ :registry/parent "AWAI-706"
+ :registry/issue "AWAI-2939"
+ :registry/project "cloud-itonami/actor-kafun"
+ :ontology "schema/ontology.kafun.edn"
+ :ontology/version "0.1.0"
+ :seed "data/seed.edn"
+ :seed/sourcing :synthetic
+ :ledger "data/persisted/kafun.remediation.kotoba.edn"
+ :ledger/gitignored true
+ :analyses
+ [{:id "cld" :family :systems :question "増幅・均衡"
+   :module "src/kafun/methods/dynamics.kotoba"
+   :anchor [:kafun.stand/emission-density :kafun.stand/exposed-pop-weight]
+   :gates ["G1" "G4" "G5"]}
+  {:id "archetype" :family :systems :question "定番悪循環"
+   :module "src/kafun/methods/dynamics.kotoba"
+   :anchor [:kafun.stand/sapling-supply :kafun.stand/consent]
+   :note "L1-1 苗木 / 同意の readiness 停滞を型化。test_bottleneck が対象。"
+   :gates ["G3" "G5"]}
+  {:id "ssm" :family :systems :question "立場の差"
+   :module "manifest.edn"
+   :anchor [:kafun.stand/consent :kafun.stand/note]
+   :note "地権者・保全・需要側の Weltanschauung 差を charter/gate に記録。"
+   :gates ["G2" "G3"]}
+  {:id "vsm" :family :systems :question "生存機能"
+   :module "src/kafun/cell.kotoba"
+   :anchor [:cell/name :cell/cron]
+   :note "heartbeat cell (fire) を生存機能の実装点にする。"
+   :gates ["G5" "G6"]}
+  {:id "csh" :family :systems :question "境界の妥当性"
+   :module "manifest.edn"
+   :anchor [:kafun.stand/consent]
+   :note "AWAI-2928 の同意ルール (granted のみ・bot は作らない) を境界条件に。"
+   :gates ["G2" "G3"]}
+  {:id "cla" :family :systems :question "層別の原因"
+   :module "schema/ontology.kafun.edn"
+   :anchor [:ontology/adr :ontology/version]
+   :note "表層= verdict / 制度= gate / 神話= 撲滅=restoration を層タグ化。"
+   :gates ["G1"]}
+  {:id "morphological" :family :systems :question "組合せ空間"
+   :module "data/seed.edn"
+   :anchor [:kafun.stand/species :kafun.stand/protected :kafun.stand/sapling-supply :kafun.stand/carbon]
+   :note "12 synthetic stands が次元×値の組合せ空間を体現。"
+   :gates ["G7"]}
+  {:id "cross-impact" :family :systems :question "波及の確率"
+   :module "src/kafun/methods/ie_flow.kotoba"
+   :anchor [:kafun.stand/area-ha :kafun.stand/reforest-viability]
+   :note "order-index / η (6.58x, +133.9) を波及指標に。"
+   :gates ["G5"]}
+  {:id "sna" :family :systems :question "依存と集中"
+   :module "manifest.edn"
+   :anchor [:actor/integrates]
+   :note "inochi/iyashi/kamado/mitate/musubi/sanae への route を辺にする。"
+   :gates ["G5"]}
+  {:id "cynefin" :family :systems :question "領域の判定"
+   :module "src/kafun/methods/remediate.kotoba"
+   :anchor [:ontology/enums]
+   :note "verdict 6種 (:reforest-priority 等) が複雑系側、:monitor が単純側。"
+   :gates ["G1" "G4"]}
+  {:id "scenario-2x2" :family :forecast :question "分岐の軸"
+   :module "src/kafun/methods/dynamics.kotoba"
+   :anchor [:kafun.stand/sapling-supply :kafun.stand/consent]
+   :note "step-system の readiness 到達前後を分岐条件に (counterfactual)。"
+   :gates ["G5"]}
+  {:id "delphi" :family :forecast :question "収束見解"
+   :module "src/kafun/methods/digest.kotoba"
+   :anchor [:digest/status]
+   :note ":dry-run ONLY。収束はテンプレート叙述の反復差分で測る。"
+   :gates ["G5" "G6" "G8"]}
+  {:id "bass" :family :forecast :question "普及曲線"
+   :module "src/kafun/methods/dynamics.kotoba"
+   :anchor [:kafun.stand/sapling-supply]
+   :note "無花粉苗木の供給 readiness 蓄積を読替え対象に (供給は外部・G5)。"
+   :gates ["G5" "G7"]}
+  {:id "timeseries" :family :forecast :question "季節・趨勢"
+   :module "src/kafun/methods/autorun.kotoba"
+   :anchor [:kafun/sourcing]
+   :note "append-only ledger の verdict 系列を観測対象に。 heartbeat は追記のみ。"
+   :gates ["G5" "G6" "G8"]}
+  {:id "io-cge" :family :forecast :question "波及・均衡"
+   :module "src/kafun/methods/ie_flow.kotoba"
+   :anchor [:kafun.stand/area-ha :kafun.stand/carbon]
+   :note "共有 ie-flow metrics を埋込み (fork しない)。"
+   :gates ["G4" "G5"]}
+  {:id "inventory" :family :forecast :question "欠品・余剰"
+   :module "src/kafun/methods/remediate.kotoba"
+   :anchor [:kafun.stand/sapling-supply]
+   :note "L1-1 (:none → :await-sapling-supply) を欠品点にする。"
+   :gates ["G5"]}
+  {:id "choice" :family :forecast :question "選好確率"
+   :module "src/kafun/methods/remediate.kotoba"
+   :anchor [:ontology/enums]
+   :note "verdict 分岐を離散選択として校正。個人選好は扱わない (G2)。"
+   :gates ["G1" "G2" "G4"]}
+  {:id "bn-causal" :family :forecast :question "条件付確率"
+   :module "src/kafun/methods/remediate.kotoba"
+   :anchor [:kafun.stand/replant :kafun.stand/carbon :kafun.stand/protected]
+   :note "gate の拒否条件 (G1/G4) を DAG の固定辺にする。"
+   :gates ["G1" "G4"]}
+  {:id "llm-abm" :family :forecast :question "創発行動"
+   :module "src/kafun/methods/react_loop.kotoba"
+   :anchor [:kafun.stand/consent :kafun.stand/sapling-supply]
+   :note "ReAct beat の HYPOTHESIZE を創発点に。ACT は forecast + propose-only。"
+   :gates ["G5" "G6"]}
+  {:id "nowcast" :family :forecast :question "早期指標"
+   :module "src/kafun/methods/autorun.kotoba"
+   :anchor [:kafun/sourcing :kafun/derived]
+   :note "verdict datom の :kafun/sourcing 旗を典拠・鮮度管理に。"
+   :gates ["G6" "G8"]}]}
