@@ -13,6 +13,14 @@ operator 取込契約の文書のみ。個人データなし (G2)、assessment-o
 - 環境省花粉飛散量調査年報 (PDL1.0): 地点シーズン総飛散数→年次 emission-density。
 - 東京都オープンデータ花粉情報 (CC-BY-4.0): ベースライン参照 (2017年時点)。
 
+## 法規制 (AWAI-2948)
+
+- 森林法 ([e-Gov](https://laws.e-gov.go.jp/law/326AC1000000249)): 保安林制度が protected-selective の根拠。
+- 森林経営管理法 ([e-Gov](https://laws.e-gov.go.jp/law/430AC0000000035)): 経営管理権集積が G3 同意の根拠。
+- スギ花粉発生源対策推進方針 ([林野庁](https://www.rinya.maff.go.jp/j/sin_riyou/kafun/suishin.html)): 伐採・植替え加速の方針根拠。
+
+条文の解釈・適用判断は operator・専門家の工程であり、repo は典拠 URL の記録に留める。
+
 ## 取込済み (制約緩和後)
 
 - `data/public-aggregates/pollen-annual-2026.edn`: 年報 2026 年の 27 地点を aggregate 行化。

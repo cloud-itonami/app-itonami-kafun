@@ -78,6 +78,18 @@
           "https://weathernews.jp/smart/pollen_entry_2026/"]
    :format "HTML/アプリ" :update "リアルタイム" :license "proprietary閲覧のみ"
    :use "公式条件確認まで取込不可"}
+  {:id "f-law-forest" :name "森林法 (e-Gov)"
+   :urls ["https://laws.e-gov.go.jp/law/326AC1000000249"]
+   :format "HTML (法令)" :update "改正時" :license "政府標準利用規約2.0"
+   :use "保安林制度→protected-selective の根拠。G1/G4 refuse 経路と対応"}
+  {:id "f-law-management" :name "森林経営管理法 (e-Gov)"
+   :urls ["https://laws.e-gov.go.jp/law/430AC0000000035"]
+   :format "HTML (法令)" :update "改正時" :license "政府標準利用規約2.0"
+   :use "経営管理権集積・市町村→G3 同意・土地主権の根拠"}
+  {:id "f-kafun-policy" :name "スギ花粉発生源対策推進方針 (林野庁)"
+   :urls ["https://www.rinya.maff.go.jp/j/sin_riyou/kafun/suishin.html"]
+   :format "HTML+PDF" :update "改正時 (R6改正)" :license "PDL1.0"
+   :use "伐採7万ha/年・植替え加速→L3-1、苗木拡大→L1-1 の政策根拠"}
   ]
  :extensions
  [{:id "agg-adapter" :name "都道府県×樹種クラス集計アダプタ"
@@ -93,7 +105,7 @@
    :intake "repo外集計→envelope EDN {supply-rate-min/max consent-rate-min/max source fiscal-year}"
    :touches ["dynamics" "react_loop" "ie_flow" "digest"]}
   {:id "constraint-layer" :name "保護・同意・炭素制約レイヤ"
-   :uses ["f-genkyou" "f-youran" "f-hakusyo"]
+   :uses ["f-genkyou" "f-youran" "f-hakusyo" "f-law-forest" "f-law-management" "f-kafun-policy"]
    :intake "repo外script: 公開割合→代表stand EDN (bool/enum+丸め規則ID+典拠)。地域クラス以上"
    :touches ["remediate" "autorun/kotoba" "ie_flow" "digest"]}]
  :unresolved
